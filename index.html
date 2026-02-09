@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA Vitalis | Nutrición y Salud de Alto Nivel</title>
+    <meta name="description" content="Clínica boutique de nutrición y medicina funcional para pacientes exclusivos.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fuentes: Playfair Display (Lujo) & Inter (Legibilidad) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Configuración de Colores y Fuentes en Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#1A2F25',   /* Verde Bosque Profundo */
+                        'brand-primary': '#2C4A3E', /* Verde Principal */
+                        'brand-gold': '#D4AF37',    /* Dorado Mate */
+                        'brand-cream': '#F9F7F2',   /* Crema Fondo */
+                        'brand-text': '#4A4A4A',    /* Gris Texto */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos personalizados para suavidad */
+        body {
+            background-color: #F9F7F2;
+            color: #4A4A4A;
+        }
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .image-overlay {
+            background: linear-gradient(to top, rgba(26,47,37,0.8), rgba(26,47,37,0.2));
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-brand-cream/90 backdrop-blur-md border-b border-gray-200" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <svg class="h-8 w-8 text-brand-primary mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                    </svg>
+                    <span class="font-serif text-2xl font-bold text-brand-dark tracking-widest">AURA VITALIS</span>
+                </div>
+
+                <!-- Menú Desktop -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#filosofia" class="text-brand-dark hover:text-brand-gold transition duration-300 text-sm tracking-widest uppercase">Filosofía</a>
+                    <div class="relative group">
+                        <button class="text-brand-dark hover:text-brand-gold transition duration-300 text-sm tracking-widest uppercase flex items-center">
+                            Servicios
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <!-- Submenú -->
+                        <div class="absolute left-0 mt-2 w-56 bg-white shadow-xl rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 z-50">
+                            <a href="#servicios" class="block px-4 py-3 text-sm text-gray-600 hover:bg-brand-cream hover:text-brand-primary transition">Nutrición Clínica</a>
+                            <a href="#servicios" class="block px-4 py-3 text-sm text-gray-600 hover:bg-brand-cream hover:text-brand-primary transition">Medicina Funcional</a>
+                            <a href="#servicios" class="block px-4 py-3 text-sm text-gray-600 hover:bg-brand-cream hover:text-brand-primary transition">Planes Genéticos</a>
+                        </div>
+                    </div>
+                    <a href="#testimonios" class="text-brand-dark hover:text-brand-gold transition duration-300 text-sm tracking-widest uppercase">Experiencias</a>
+                    <a href="#contacto" class="bg-brand-primary text-white px-6 py-2 rounded-sm text-sm tracking-widest uppercase hover:bg-brand-dark transition duration-300 shadow-lg">Agendar Cita</a>
+                </div>
+
+                <!-- Botón Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-dark hover:text-brand-primary focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Menú Móvil -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#filosofia" class="block px-3 py-2 text-base font-medium text-brand-dark hover:bg-brand-cream">Filosofía</a>
+                <a href="#servicios" class="block px-3 py-2 text-base font-medium text-brand-dark hover:bg-brand-cream">Servicios</a>
+                <a href="#testimonios" class="block px-3 py-2 text-base font-medium text-brand-dark hover:bg-brand-cream">Experiencias</a>
+                <a href="#contacto" class="block px-3 py-2 text-base font-medium text-brand-gold font-bold">Reservar Cita</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Imagen de Fondo de Alta Calidad -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Nutrición Saludable" class="w-full h-full object-cover">
+            <div class="absolute inset-0 image-overlay"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto fade-in-up" style="animation-delay: 0.2s;">
+            <p class="text-brand-gold tracking-[0.3em] uppercase text-sm mb-4 font-semibold">Ciencia y Naturaleza</p>
+            <h1 class="font-serif text-5xl md:text-7xl text-white font-medium mb-6 leading-tight">
+                Redefiniendo su <br/> <span class="italic">Bienestar Integral</span>
+            </h1>
+            <p class="text-gray-200 text-lg md:text-xl font-light mb-10 max-w-2xl mx-auto leading-relaxed">
+                Medicina de estilo de vida y nutrición de precisión diseñada exclusivamente para líderes que exigen lo mejor de su cuerpo y mente.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="#contacto" class="bg-brand-gold text-brand-dark px-8 py-3 rounded-sm uppercase tracking-widest text-sm font-semibold hover:bg-white transition duration-300">
+                    Comenzar el Viaje
+                </a>
+                <a href="#servicios" class="border border-white text-white px-8 py-3 rounded-sm uppercase tracking-widest text-sm font-semibold hover:bg-white hover:text-brand-dark transition duration-300">
+                    Explorar Servicios
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección de Filosofía (Imagen + Texto) -->
+    <section id="filosofia" class="py-24 bg-brand-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="relative">
+                    <div class="absolute -top-4 -left-4 w-full h-full border-2 border-brand-gold/30 rounded-sm"></div>
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" alt="Doctora Nutricionista" class="relative rounded-sm shadow-2xl grayscale hover:grayscale-0 transition duration-700 ease-in-out">
+                </div>
+                <div>
+                    <h2 class="font-serif text-4xl text-brand-dark mb-6">Más allá de la dieta.<br>Arquitectura de Salud.</h2>
+                    <div class="w-16 h-1 bg-brand-gold mb-8"></div>
+                    <p class="text-brand-text leading-relaxed mb-6 font-light text-lg">
+                        En <span class="font-serif font-bold text-brand-primary">AURA VITALIS</span>, no contamos calorías. Analizamos biomarcadores, estilo de vida y genética para construir un plan que optimice su longevidad y rendimiento cognitivo.
+                    </p>
+                    <p class="text-brand-text leading-relaxed mb-8 font-light text-lg">
+                        Nuestro enfoque es 100% personalizado, discreto y basado en la evidencia científica más reciente, diseñado para adaptarse a agendas exigentes.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-brand-dark">
+                            <svg class="w-5 h-5 text-brand-gold mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            Atención Concierge 24/7
+                        </li>
+                        <li class="flex items-center text-brand-dark">
+                            <svg class="w-5 h-5 text-brand-gold mr-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                            Biotecnología aplicada
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Servicios -->
+    <section id="servicios" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <span class="text-brand-gold tracking-widest uppercase text-sm font-semibold">Excelencia Clínica</span>
+                <h2 class="font-serif text-4xl text-brand-dark mt-2">Nuestros Programas</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Servicio 1 -->
+                <div class="group p-8 border border-gray-100 bg-brand-cream/30 hover:bg-brand-primary hover:shadow-2xl transition duration-500 rounded-sm text-center">
+                    <div class="w-16 h-16 mx-auto bg-brand-primary group-hover:bg-white rounded-full flex items-center justify-center mb-6 transition duration-500">
+                        <svg class="w-8 h-8 text-white group-hover:text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                    </div>
+                    <h3 class="font-serif text-2xl text-brand-dark group-hover:text-white mb-4">Nutrición Genómica</h3>
+                    <p class="text-gray-600 group-hover:text-gray-200 mb-6 font-light">
+                        Planes alimenticios basados en su ADN. Entienda cómo su cuerpo metaboliza nutrientes para una precisión absoluta.
+                    </p>
+                    <a href="#contacto" class="text-brand-gold text-sm uppercase tracking-widest hover:text-white transition">Solicitar Información</a>
+                </div>
+
+                <!-- Servicio 2 -->
+                <div class="group p-8 border border-gray-100 bg-brand-cream/30 hover:bg-brand-primary hover:shadow-2xl transition duration-500 rounded-sm text-center">
+                    <div class="w-16 h-16 mx-auto bg-brand-primary group-hover:bg-white rounded-full flex items-center justify-center mb-6 transition duration-500">
+                        <svg class="w-8 h-8 text-white group-hover:text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    </div>
+                    <h3 class="font-serif text-2xl text-brand-dark group-hover:text-white mb-4">Longevidad & Anti-Aging</h3>
+                    <p class="text-gray-600 group-hover:text-gray-200 mb-6 font-light">
+                        Protocolos diseñados para ralentizar el envejecimiento celular, mejorar la piel y aumentar la vitalidad diaria.
+                    </p>
+                    <a href="#contacto" class="text-brand-gold text-sm uppercase tracking-widest hover:text-white transition">Solicitar Información</a>
+                </div>
+
+                <!-- Servicio 3 -->
+                <div class="group p-8 border border-gray-100 bg-brand-cream/30 hover:bg-brand-primary hover:shadow-2xl transition duration-500 rounded-sm text-center">
+                    <div class="w-16 h-16 mx-auto bg-brand-primary group-hover:bg-white rounded-full flex items-center justify-center mb-6 transition duration-500">
+                        <svg class="w-8 h-8 text-white group-hover:text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="font-serif text-2xl text-brand-dark group-hover:text-white mb-4">Wellness Ejecutivo</h3>
+                    <p class="text-gray-600 group-hover:text-gray-200 mb-6 font-light">
+                        Optimización cognitiva y manejo del estrés para altos ejecutivos. Nutrición para el rendimiento mental sostenido.
+                    </p>
+                    <a href="#contacto" class="text-brand-gold text-sm uppercase tracking-widest hover:text-white transition">Solicitar Información</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios / Social Proof -->
+    <section id="testimonios" class="py-24 bg-brand-dark text-white relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4 text-center relative z-10">
+            <svg class="w-12 h-12 text-brand-gold mx-auto mb-6 opacity-50" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21L14.017 18C14.017 16.8954 13.1216 16 12.017 16H9.01705C9.01705 12.6863 11.7033 10 15.017 10V8C10.5987 8 7.01705 11.5817 7.01705 16V21H14.017ZM24.017 21L24.017 18C24.017 16.8954 23.1216 16 22.017 16H19.017C19.017 12.6863 21.7033 10 25.017 10V8C20.5987 8 17.017 11.5817 17.017 16V21H24.017Z"/></svg>
+            <h3 class="font-serif text-3xl md:text-4xl italic mb-10 leading-relaxed">
+                "La atención al detalle y la personalización que he recibido en Aura Vitalis no tienen comparación. No es solo una dieta, es un rediseño completo de mi energía."
+            </h3>
+            <div class="flex flex-col items-center">
+                <p class="font-bold tracking-widest uppercase text-brand-gold text-sm">Mariana Echeverría</p>
+                <p class="text-gray-400 text-xs mt-1">CEO & Fundadora</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section id="contacto" class="py-24 bg-brand-cream">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12">
+                <h2 class="font-serif text-4xl text-brand-dark mb-4">Inicie su Transformación</h2>
+                <p class="text-brand-text font-light">Agenda limitada. Reserve una consulta de valoración.</p>
+            </div>
+
+            <form class="bg-white shadow-xl rounded-sm p-8 md:p-12 border-t-4 border-brand-gold">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Nombre</label>
+                        <input type="text" class="w-full bg-gray-50 border border-gray-200 p-3 rounded-sm focus:outline-none focus:border-brand-primary transition" placeholder="Su nombre completo">
+                    </div>
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Email</label>
+                        <input type="email" class="w-full bg-gray-50 border border-gray-200 p-3 rounded-sm focus:outline-none focus:border-brand-primary transition" placeholder="correo@empresa.com">
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Teléfono</label>
+                    <input type="tel" class="w-full bg-gray-50 border border-gray-200 p-3 rounded-sm focus:outline-none focus:border-brand-primary transition" placeholder="+52 (555) 000-0000">
+                </div>
+                <div class="mb-8">
+                    <label class="block text-xs uppercase tracking-widest text-gray-500 mb-2">Interés Principal</label>
+                    <select class="w-full bg-gray-50 border border-gray-200 p-3 rounded-sm focus:outline-none focus:border-brand-primary transition text-gray-600">
+                        <option>Nutrición Clínica</option>
+                        <option>Medicina Funcional</option>
+                        <option>Wellness Corporativo</option>
+                        <option>Otro</option>
+                    </select>
+                </div>
+                <button type="button" onclick="alert('Gracias por su interés. Un especialista de Aura Vitalis le contactará en breve.')" class="w-full bg-brand-dark text-white py-4 rounded-sm uppercase tracking-widest font-semibold hover:bg-brand-primary transition duration-300 shadow-lg">
+                    Solicitar Cita
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white py-16 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-12">
+            <!-- Brand -->
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center mb-6">
+                    <span class="font-serif text-2xl font-bold tracking-widest">AURA VITALIS</span>
+                </div>
+                <p class="text-gray-400 font-light max-w-sm">
+                    Clínica privada dedicada a la excelencia en salud metabólica y nutrición de precisión.
+                </p>
+            </div>
+            
+            <!-- Contacto -->
+            <div>
+                <h4 class="text-brand-gold uppercase tracking-widest text-sm font-semibold mb-6">Contacto</h4>
+                <p class="text-gray-400 font-light mb-2">Paseo de la Reforma 250, Piso 12</p>
+                <p class="text-gray-400 font-light mb-2">Ciudad de México, CDMX</p>
+                <p class="text-gray-400 font-light">+52 (55) 1234 5678</p>
+                <p class="text-gray-400 font-light">citas@auravitalis.com</p>
+            </div>
+
+            <!-- Links -->
+            <div>
+                <h4 class="text-brand-gold uppercase tracking-widest text-sm font-semibold mb-6">Legal</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition font-light text-sm">Privacidad</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition font-light text-sm">Términos</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition font-light text-sm">Aviso Médico</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 mt-16 pt-8 border-t border-gray-800 text-center text-gray-500 text-xs">
+            &copy; 2024 Aura Vitalis. Todos los derechos reservados. Diseño Exclusivo.
+        </div>
+    </footer>
+
+    <!-- Script Simple para Menú Móvil -->
+    <script>
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Efecto scroll en navbar
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.remove('shadow-md');
+                navbar.classList.add('py-4');
+            }
+        });
+    </script>
+</body>
+</html>
